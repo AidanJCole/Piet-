@@ -1,4 +1,5 @@
 from interpreter import *
+import sc
 
 def testGetStack():
     assert getStack([], 0) == []

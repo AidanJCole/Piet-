@@ -1,23 +1,39 @@
 from PIL import Image
+import copy
 
+stack = []
+stackStack = [stack]
+depth = 0
 
-# Piet++ often travers stacks of stacks. This function returns the stack at a given depth.
-def getStack(stack, depth):
-    temp = stack
-    for x in range(depth):
-        if len(temp) > 0 and isinstance(temp[-1], list):
-            temp = temp[-1]
-        else:
-            return
+def isStack(u):
+    return isinstance(u, list)
 
-    return temp
+def pushInt(stack, value):
+    stack.append(value)
 
-# Function to determine maximum depth of recursive stacks.
-def getDepth(stack):
-    depth = 0
-    temp = stack
-    while len(temp) > 0 and isinstance(temp[-1], list):
-        depth+=1
-        temp = temp[-1]
+def pushStack(stack):
+    stack.append([])
 
-    return depth
+def pop(stack):
+    if len(stack) > 0:
+        return stack.pop()
+
+def dup(stack):
+    stack.append(copy.deepcopy(stack[-1]))
+
+def roll(x, y, stack):
+    return 0
+
+def rolc(x,y,stackStack):
+    return 0
+
+def pushUp(stackStack):
+    if len(stackStack) >= 2 and len(stackStack[-1]) > 0:
+        current = stackStack[-1]
+        stackStack[-2].append(pop(current))
+
+def pushDown(stackStack):
+    if len(stackStack[-1]) > 2 and isStack(stackStack[-1][-2]):
+        temp = stackStack[-1][-2]
+        temp.append(pop(stackStack[-1]))
+
