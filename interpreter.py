@@ -33,7 +33,19 @@ def pushUp(stackStack):
         stackStack[-2].append(pop(current))
 
 def pushDown(stackStack):
-    if len(stackStack[-1]) > 2 and isStack(stackStack[-1][-2]):
+    if len(stackStack[-1]) >= 2 and isStack(stackStack[-1][-2]):
         temp = stackStack[-1][-2]
         temp.append(pop(stackStack[-1]))
+
+def pullUp(stackStack):
+    if len(stackStack[-1]) >= 1 and isStack(stackStack[-1][-1]):
+        stackStack[-1].append(pop(stackStack[-1][-1]))
+
+def up(stackStack):
+    if len(stackStack) > 1:
+        pop(stackStack)
+
+def down(stackStack):
+    if isStack(stackStack[-1][-1]):
+        stackStack.append(stackStack[-1][-1])
 
